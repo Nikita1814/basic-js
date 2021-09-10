@@ -15,7 +15,7 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default function transform(arr) {
 if (!Array.isArray(arr)){
-  throw "\'arr\' parameter must be an instance of the Array!"
+  throw new Error("\'arr\' parameter must be an instance of the Array!")
 } 
 let nuArr = arr.map((e) => e = e)
 
