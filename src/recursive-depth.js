@@ -13,26 +13,12 @@ import { NotImplementedError } from '../extensions/index.js';
  *
  */
 export default class DepthCalculator {
-  calculateDepth(arr ) {
-    if (!this.depth) {
-      this.depth = 1;
-      this.maxDepth = 1
-    }
-    
-  
-    for(let i = 0; i< arr.length; i++){
-      if (Array.isArray(arr[i])){
-        this.depth+=1
-        this.calculateDepth(arr[i])
-      }
-      if(this.depth > this.maxDepth){
-        this.maxDepth = this.depth
-      }
-      this.depth = 1
-    }
-  
-    return this.maxDepth
-
-}
+ 
+  calculateDepth(arr, depth = 0) {
+  depth ++
+    if (arr.some((e) => {e instanceof Array})){
+       this.calculateDepth(arr.flat(),depth) 
+     } else{return depth }
+   }
   }
-
+  
