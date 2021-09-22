@@ -18,7 +18,7 @@ export default {
     return this
   },
   removeLink(position ) { 
-    if(this.chain.split('~~').length < position || (positon instanceof Number) === false || !Number.isInteger(position) === false){throw "You can't remove incorrect link!"}
+    if(this.chain.split('~~').length < position || (position instanceof Number) === false || !Number.isInteger(position) === false){throw new Error("You can't remove incorrect link!")}
     this.chain = this.chain.split('~~')
 
     this.chain.splice((position-1), 1)
