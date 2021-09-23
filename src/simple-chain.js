@@ -1,37 +1,41 @@
-import { NotImplementedError } from '../extensions/index.js';
+import { NotImplementedError } from "../extensions/index.js";
 
 /**
  * Implement chainMaker object according to task description
- * 
+ *
  */
 export default {
-  chain : '' ,
+  hain: "",
+  chainArr: [],
   getLength() {
-    return this.chain.match(/\(.*\)/)
-
+    return this.chainArr.length;
   },
   addLink(value) {
-    if(this.chain.length === 0){
-      this.chain = this.chain + (`( ${value} )`)
-    } else 
-    {this.chain = this.chain + (`~~( ${value} )`)}
-    return this
+    this.chainArr.push(`( ${value} )`);
+    return this;
   },
-  removeLink(position ) { 
-    if(this.chain.split('~~').length < position || (position instanceof Number) === false || !Number.isInteger(position) === false){throw new Error("You can't remove incorrect link!")}
-    this.chain = this.chain.split('~~')
-
-    this.chain.splice((position-1), 1)
- 
-    this.chain = this.chain.join('~~')
-   return this
+  removeLink(position) {
+    if (
+      this.chainArr.length < position ||
+      position < 1 ||
+      typeof position !== "number" ||
+      Number.isInteger(position) === false
+    ) {
+      this.chainArr = [];
+      throw new Error("You can't remove incorrect link!");
+    } else {
+      this.chainArr.splice(position - 1, 1);
+      return this;
+    }
   },
   reverseChain() {
-   this.chain = this.chain.split('~~').reverse().join('~~')
-   return this
+    this.chainArr.reverse();
+
+    return this;
   },
   finishChain() {
-  return this.chain
-  
-  }
+    this.chain = this.chainArr.join("~~");
+    this.chainArr = [];
+    return this.chain;
+  },
 };
