@@ -17,20 +17,20 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default function repeater(str, options) {
   let result = []
-  result.push(str.toString())
+  result.push(String(str))
  
  if(options.hasOwnProperty('addition')){
    let additionsResult = []
-   additionsResult.push(options.addition.toString())
+   additionsResult.push(String(options.addition))
   
    if(options.additionRepeatTimes && options.additionRepeatTimes > 1){
      for (let i = 1; i < options.additionRepeatTimes; i++){
-       additionsResult.push(options.addition.toString())  
+       additionsResult.push(String(options.addition))  
       
    }
  }
    if(options.additionSeparator){
-     additionsResult = additionsResult.join(`${options.additionSeparator.toString()}`)
+     additionsResult = additionsResult.join(`${String(options.additionSeparator)}`)
   
    } else{
      additionsResult = additionsResult.join('|')
@@ -47,7 +47,7 @@ export default function repeater(str, options) {
   }
 }
   if(options.separator){
-    return result.join(`${options.separator.toString()}`)
+    return result.join(`${String(options.separator)}`)
   } else{
   return result.join('+')  
   }
